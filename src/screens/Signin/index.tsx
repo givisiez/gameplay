@@ -5,7 +5,12 @@ import { ButtonIcon } from "../../components/ButtonIcon";
 import Illustration from "../../assets/illustration.png";
 import { styles } from "./styles";
 
-export function SignIn() {
+export function SignIn({navigation}: {navigation: any}) {
+
+  function handleSignIn() {
+    navigation.navigate('Home');
+  }
+
   return (
     <View style={styles.container}>      
       <Image source={Illustration} style={styles.image} resizeMode="stretch" />
@@ -21,7 +26,7 @@ export function SignIn() {
         
         <ButtonIcon 
           title="Entrar com Discord"
-          activeOpacity={0.7}
+          onPress={handleSignIn}
         />
       </View>
     </View>
