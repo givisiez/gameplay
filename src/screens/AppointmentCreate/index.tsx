@@ -32,90 +32,101 @@ export function AppointmentCreate() {
     setOpenGuildsModal(!true);
   }
 
+  function handleCloseGuild() {
+    setOpenGuildsModal(!true);
+  }
+
+  function handleCategorySelect(categoryId: string) {
+    setCategory(categoryId);
+  }
+
   return (
     <KeyboardAvoidingView 
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       style={styles.container}
     >
-      <ScrollView>
-        <Background>
-          <Header title="Agendar partida" />
+      <Background>
+        <ScrollView>        
+            <Header title="Agendar partida" />
 
-          <Text
-            style={[
-              styles.label,
-              {
-                marginLeft: 24,
-                marginTop: 36,
-                marginBottom: 18,
-              },
-            ]}
-          >
-            Categoria
-          </Text>
-
-          <CategorySelect
-            hasCheckBox
-            setCategory={setCategory}
-            categorySelected={category}
-          />
-
-          <View style={styles.form}>
-            <RectButton onPress={handleOpenGuilds}>
-              <View style={styles.select}>
+            <Text
+              style={[
+                styles.label,
                 {
-                  guild.icon ? <GuildIcon /> : <View style={styles.image}/>                  
-                }
-                <View style={styles.selectBody}>
-                  <Text style={styles.label}>
-                    {guild.name ? guild.name : 'Selecione um servidor'}                    
-                  </Text>
+                  marginLeft: 24,
+                  marginTop: 36,
+                  marginBottom: 18,
+                },
+              ]}
+            >
+              Categoria
+            </Text>
+
+            <CategorySelect
+              hasCheckBox
+              setCategory={handleCategorySelect}
+              categorySelected={category}
+            />
+
+            <View style={styles.form}>
+              <RectButton onPress={handleOpenGuilds}>
+                <View style={styles.select}>
+                  {
+                    guild.icon ? <GuildIcon /> : <View style={styles.image}/>                  
+                  }
+                  <View style={styles.selectBody}>
+                    <Text style={styles.label}>
+                      {guild.name ? guild.name : 'Selecione um servidor'}                    
+                    </Text>
+                  </View>
+
+                  <Icon name="chevron-right" color={theme.colors.heading} size={18} />
+                </View>
+              </RectButton>
+
+              <View style={styles.field}>
+                <View>
+                  <Text style={[styles.label, { marginBottom: 12}]}>Dia e mês</Text>
+                  <View style={styles.column}>
+                    <SmallInput maxLength={2} />
+                    <Text style={styles.divider}>/</Text>
+                    <SmallInput maxLength={2} />
+                  </View> 
                 </View>
 
-                <Icon name="chevron-right" color={theme.colors.heading} size={18} />
-              </View>
-            </RectButton>
-
-            <View style={styles.field}>
-              <View>
-                <Text style={styles.label}>Dia e mês</Text>
-                <View style={styles.column}>
-                  <SmallInput maxLength={2} />
-                  <Text style={styles.divider}>/</Text>
-                  <SmallInput maxLength={2} />
+                <View>
+                  <Text style={[styles.label, { marginBottom: 12}]}>Horário</Text>
+                  <View style={styles.column}>
+                    <SmallInput maxLength={2} />
+                    <Text style={styles.divider}>:</Text>
+                    <SmallInput maxLength={2} />
+                  </View> 
                 </View> 
+
+                <View style={[styles.field, { marginBottom: 12 }]}>
+                  <Text style={styles.label}>Descrição</Text>
+                  <Text style={styles.caracteresLimit}>Max 100 caracteres</Text>
+                </View>
+
+                <TextArea 
+                  multiline
+                  maxLength={100}
+                  numberOfLines = {5}
+                  autoCorrect={false}          
+                />
               </View>
-
-              <View>
-                <Text style={styles.label}>Horário</Text>
-                <View style={styles.column}>
-                  <SmallInput maxLength={2} />
-                  <Text style={styles.divider}>:</Text>
-                  <SmallInput maxLength={2} />
-                </View> 
-              </View> 
-
-              <View style={[styles.field, { marginBottom: 12 }]}>
-                <Text style={styles.label}>Descrição</Text>
-                <Text style={styles.caracteresLimit}>Max 100 caracteres</Text>
+              
+              <View style={styles.footer}>
+                <Button title="Agendar"/>
               </View>
-
-              <TextArea 
-                multiline
-                maxLength={100}
-                numberOfLines = {5}
-                autoCorrect={false}          
-              />
-            </View>
-            
-            <View style={styles.footer}>
-              <Button title="Agendar"/>
-            </View>
-          </View>
-        </Background>
-      </ScrollView>  
+            </View>        
+        </ScrollView> 
+      </Background> 
       
-      <ModalView visible={openGuildsModal}>
+      <ModalView 
+        visible={openGuildsModal}
+        closeModal={handleCloseGuild}
+      >
         <Guilds handleGuildSelected={handleGuildSelect}/>
       </ModalView>              
     </KeyboardAvoidingView>
