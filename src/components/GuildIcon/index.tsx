@@ -1,15 +1,34 @@
 import React from "react";
-import { Image } from "react-native";
+import { View, Image } from "react-native";
+
+const { CDN_IMAGE } = process.env;
 
 import { styles } from "./styles";
+import DiscordSvg from '../../assets/discord.svg';
 
-export function GuildIcon() {
-  const uri = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.b2wHU4Qe-FGiS4RDKymE2wAAAA%26pid%3DApi&f=1";
+type Props = {
+  guildId: string;
+  iconId: string | null;
+}
+
+export function GuildIcon({ guildId, iconId}: Props) {
+  const uri = `${CDN_IMAGE}/icons/${guildId}/${iconId}.png`; 
+  
   return (
-    <Image 
-      source={{ uri }}
-      style={styles.image}
-      resizeMode="cover"    
-    />  
+    <View style={styles.container}>
+      { 
+        iconId ?
+          <Image 
+            source={{ uri }}
+            style={styles.image}
+            resizeMode="cover"    
+          />
+        : 
+        <DiscordSvg 
+          width={40}
+          height={40}
+        />
+      }
+    </View>
   );
 }

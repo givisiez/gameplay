@@ -1,18 +1,35 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { useAuth } from '../../hooks/auth';
+import { RectButton } from 'react-native-gesture-handler';
 
 import { Avatar } from '../Avatar';
 import { styles } from './styles';
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, singOut } = useAuth();
   // console.log(user);
+
+  function handlSingOut(){
+    Alert.alert('Logout', 'Deseja sair?',
+    [
+      {
+        text: 'Não',
+        style: 'cancel'
+      },
+      {
+        text: 'Sim',
+        onPress: () => singOut()
+      }
+    ]
+    )
+  }
   return(
     <View style={styles.container}>
 
-      <Avatar urlImage={ user.avatar }/>
-
+      <RectButton onPress={handlSingOut}>
+        <Avatar urlImage={ user.avatar }/>
+      </RectButton>
       <View>
         <View style={styles.user}>
           <Text style={styles.greeting}>
