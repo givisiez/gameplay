@@ -32,7 +32,7 @@ type User = {
 type AuthContextdata = {
   user: User;
   loading: boolean;
-  singIn: () => Promise<void>;
+  signIn: () => Promise<void>;
   singOut: () => Promise<void>;
 }
 
@@ -53,7 +53,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>({} as User);
   const [loading, setLoading] = useState(false);
 
-  async function singIn() {
+  async function signIn() {
     try {
       setLoading(true);
 
@@ -110,7 +110,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     <AuthContext.Provider value={{
       user, 
       loading,
-      singIn,
+      signIn,
       singOut
       }}>
       { children }
