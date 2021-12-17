@@ -1,4 +1,7 @@
-## GamePlay
+## GamePlay App
+
+Projeto desenvolvido em React Native utilizando o <a href="https://expo.io/" target="_blank" title="Expo">Expo</a>.
+
 Conecte-se e organize suas jogatinas
 
 ![Print sreen](https://github.com/givisiez/gameplay/blob/master/assets/prints/capa.jpg?raw=true)
