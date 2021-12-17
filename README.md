@@ -1,7 +1,6 @@
 ## GamePlay
-App para auxiliar as jogatinas com os amigos
+Conecte-se e organize suas jogatinas
 
-<NLW/> together :: Mission: React Native
+![Print sreen](https://github.com/givisiez/gameplay/blob/master/assets/prints/capa.jpg?raw=true)
 
-Foi utilizado o EXPO
-
+Projeto do curso da Rocketseat: together :: Mission: React Native
