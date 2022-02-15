@@ -27,9 +27,6 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.givisiez.gameplay"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
     }
   }
 }
